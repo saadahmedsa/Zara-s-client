@@ -12,7 +12,7 @@ export const fetchAllFilteredProducts = createAsyncThunk(
   async () => {
 
     const result = await axios.get(
-      `hhttps://hackathon-ecommerce-backend.vercel.app/api/v1/Allproduct`
+       "https://hackathon-ecommerce-backend.vercel.app/api/v1/Allproduct"
     );
     return result?.data;
   }

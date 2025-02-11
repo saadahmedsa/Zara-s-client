@@ -18,7 +18,8 @@ const page = () => {
   const {productList,productDetails} = useSelector(state => state.shopProducts)
   const {user} = useSelector(state => state.auth)
   const {toast} = useToast()
-    const [open,setopen] = useState(false)
+  const [open,setopen] = useState(false)
+  console.log(productList);
   
   const dispatch = useDispatch()
       const {featurelist} = useSelector(state => state.commonSlice)
