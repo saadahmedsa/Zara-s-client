@@ -6,23 +6,23 @@ const  initialState = {
     isLoading : false 
 }
 export const addTocart = createAsyncThunk("cart/addtocart", async({userId,productId,quantity})=>{
- const response = await axios.post(`http://localhost:5000/api/v1/addtocart`,{
+ const response = await axios.post(`https://hackathon-ecommerce-backend.vercel.app/api/v1/addtocart`,{
     userId,productId,quantity
  })
   return response?.data
 })
 export const getcartitems = createAsyncThunk("cart/getcartitem", async(userId)=>{
-    const response = await axios.get(`http://localhost:5000/api/v1/Allcartitem/${userId}`)
+    const response = await axios.get(`https://hackathon-ecommerce-backend.vercel.app/api/v1/Allcartitem/${userId}`)
       return response?.data
     })
 export const editcartitems = createAsyncThunk("cart/editcartitem", async({userId,productId,quantity})=>{
-    const response = await axios.put(`http://localhost:5000/api/v1/editcart`,{
+    const response = await axios.put(`https://hackathon-ecommerce-backend.vercel.app/api/v1/editcart`,{
         userId,productId,quantity
      })
       return response?.data
     })
 export const deletecartitems = createAsyncThunk("cart/deletecartitems", async({userId,productId})=>{
-    const response = await axios.delete(`http://localhost:5000/api/v1/delcart/${userId}/${productId}`,)
+    const response = await axios.delete(`https://hackathon-ecommerce-backend.vercel.app/api/v1/delcart/${userId}/${productId}`,)
       return response?.data
     })
 

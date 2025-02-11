@@ -8,13 +8,13 @@ const initialState = {
 
 // Fetch features
 export const getfeature = createAsyncThunk("feature/getfeature", async () => {
-  const result = await axios.get(`http://localhost:5000/api/v1/Allfeature`);
+  const result = await axios.get(`https://hackathon-ecommerce-backend.vercel.app/api/v1/Allfeature`);
   return result?.data;
 });
 
 // Add feature
 export const Addfeature = createAsyncThunk("feature/Addfeature", async (image) => {
-  const result = await axios.post(`http://localhost:5000/api/v1/Addfeature`, 
+  const result = await axios.post(`https://hackathon-ecommerce-backend.vercel.app/api/v1/Addfeature`, 
    image,
    {
     headers: {
@@ -28,7 +28,7 @@ export const Addfeature = createAsyncThunk("feature/Addfeature", async (image) =
 // Delete feature
 export const deletefeature = createAsyncThunk("feature/deletefeature", 
   async (id) => {
-  const result = await axios.delete(`http://localhost:5000/api/v1/deletefeature/${id}`);
+  const result = await axios.delete(`https://hackathon-ecommerce-backend.vercel.app/api/v1/deletefeature/${id}`);
   return result?.data;
 });
 

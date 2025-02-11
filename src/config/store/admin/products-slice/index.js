@@ -10,7 +10,7 @@ export const addNewProduct = createAsyncThunk(
   "/products/addproduct",
   async (formData) => {
     const result = await axios.post(
-      "http://localhost:5000/api/v1/addproduct",
+      "https://hackathon-ecommerce-backend.vercel.app/api/v1/addproduct",
       formData,
       {
         headers: {
@@ -27,7 +27,7 @@ export const getallproduct = createAsyncThunk(
   "/products/getAllProducts",
   async () => {
     const result = await axios.get(
-      "http://localhost:5000/api/v1/All"
+      "https://hackathon-ecommerce-backend.vercel.app/api/v1/All"
     );
 // console.log(result?.data);
 
@@ -39,7 +39,7 @@ export const editProduct = createAsyncThunk(
   "/products/editProduct",
   async ({ id, formdata }) => {
     const result = await axios.put(
-      `http://localhost:5000/api/v1/edit/${id}`,
+      `https://hackathon-ecommerce-backend.vercel.app/api/v1/edit/${id}`,
       formdata,
       {
         headers: {
@@ -58,7 +58,7 @@ export const deleteProduct = createAsyncThunk(
   "/products/deleteProduct",
   async (id) => {
     const result = await axios.delete(
-      `http://localhost:5000/api/v1/delete/${id}`
+      `https://hackathon-ecommerce-backend.vercel.app/api/v1/delete/${id}`
     );
 
     return result?.data;

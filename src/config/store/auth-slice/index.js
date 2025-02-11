@@ -10,7 +10,7 @@ const initialState = {
 }
 export const registerUser = createAsyncThunk("/auth/Register",
     async (FormData)=>{
-        const response = await axios.post("http://localhost:5000/api/v1/register",FormData,{
+        const response = await axios.post("https://hackathon-ecommerce-backend.vercel.app/api/v1/register",FormData,{
             withCredentials:true
         })
 
@@ -19,7 +19,7 @@ export const registerUser = createAsyncThunk("/auth/Register",
 )
 export const loginuser = createAsyncThunk("/auth/login",
     async (FormData)=>{
-        const response = await axios.post("http://localhost:5000/api/v1/login",FormData,{
+        const response = await axios.post("https://hackathon-ecommerce-backend.vercel.app/api/v1/login",FormData,{
             withCredentials:true
         })
 
@@ -28,7 +28,7 @@ export const loginuser = createAsyncThunk("/auth/login",
 )
 export const checkuser = createAsyncThunk("/auth/checkauth",
     async ()=>{
-        const response = await axios.get("http://localhost:5000/api/v1/authcheck",{
+        const response = await axios.get("https://hackathon-ecommerce-backend.vercel.app/api/v1/authcheck",{
           withCredentials:true,
           headers:{
             'Cache-control' : 'no-store,no-cache,must-revalidate,proxy-revalidate'
@@ -41,7 +41,7 @@ export const checkuser = createAsyncThunk("/auth/checkauth",
 )
 export const logoutuser = createAsyncThunk("/auth/logout",
     async ()=>{
-        const response = await axios.get("http://localhost:5000/api/v1/logout",{
+        const response = await axios.get("https://hackathon-ecommerce-backend.vercel.app/api/v1/logout",{
           withCredentials:true,
          
         }

@@ -10,7 +10,7 @@ export const addNewAddress = createAsyncThunk(
   "/addresses/addNewAddress",
   async (formData) => {
     const response = await axios.post(
-      "http://localhost:5000/api/v1/Addadd",
+      "https://hackathon-ecommerce-backend.vercel.app/api/v1/Addadd",
       formData
     );
      console.log(response);
@@ -23,7 +23,7 @@ export const fetchAllAddresses = createAsyncThunk(
   "/addresses/fetchAllAddresses",
   async (userId) => {
     const response = await axios.get(
-      `http://localhost:5000/api/v1/Alladd/${userId}`
+      `https://hackathon-ecommerce-backend.vercel.app/api/v1/Alladd/${userId}`
     );
    
     return response.data;
@@ -34,7 +34,7 @@ export const editaAddress = createAsyncThunk(
   "/addresses/editaAddress",
   async ({ userId, addressId, formData }) => {
     const response = await axios.put(
-      `http://localhost:5000/api/v1/editadd/${userId}/${addressId}`,
+      `https://hackathon-ecommerce-backend.vercel.app/api/v1/editadd/${userId}/${addressId}`,
       formData
     );
 
@@ -46,7 +46,7 @@ export const deleteAddress = createAsyncThunk(
   "/addresses/deleteAddress",
   async ({ userId, addressId }) => {
     const response = await axios.delete(
-      `http://localhost:5000/api/v1/deleteadd/${userId}/${addressId}`
+      `https://hackathon-ecommerce-backend.vercel.app/api/v1/deleteadd/${userId}/${addressId}`
     );
 
     return response.data;
