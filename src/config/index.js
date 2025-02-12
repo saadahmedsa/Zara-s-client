@@ -112,6 +112,12 @@ export const registerFormControls = [
       label: "Men",
       path: "/shop/listing?category=Men",
     },
+   
+    {
+      id: "product",
+      label: "Products",
+      path: "/shop/listing",
+    },
     {
       id: "women",
       label: "Women",

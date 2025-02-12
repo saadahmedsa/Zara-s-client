@@ -17,7 +17,7 @@ const initialAddressFormData = {
   notes: "",
 };
 
-function Address({ setCurrentSelectedAddress, selectedId }) {
+function Address({  selectedId ,setaddress}) {
   const [formData, setFormData] = useState(initialAddressFormData);
   const [currentEditedId, setCurrentEditedId] = useState(null);
   const dispatch = useDispatch();
@@ -109,7 +109,6 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
     dispatch(fetchAllAddresses(user?.id));
   }, [dispatch]);
 
-//   console.log(addressList, "addressList");
 
   return (
     <Card>
@@ -122,7 +121,7 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
                 handleDeleteAddress={handleDeleteAddress}
                 addressInfo={singleAddressItem}
                 handleEditAddress={handleEditAddress}
-                setCurrentSelectedAddress={setCurrentSelectedAddress}
+                setaddress={setaddress}
               />
             ))
           : null}

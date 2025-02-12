@@ -6,14 +6,14 @@ function AddressCard({
   addressInfo,
   handleDeleteAddress,
   handleEditAddress,
-  setCurrentSelectedAddress,
+  setaddress,
   selectedId,
 }) {
   return (
     <Card
       onClick={
-        setCurrentSelectedAddress
-          ? () => setCurrentSelectedAddress(addressInfo)
+        setaddress
+          ? () => setaddress(addressInfo)
           : null
       }
       className={`cursor-pointer border-red-700 ${
