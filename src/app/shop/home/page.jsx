@@ -19,7 +19,7 @@ const page = () => {
   const {user} = useSelector(state => state.auth)
   const {toast} = useToast()
   const [open,setopen] = useState(false)
-  console.log(productList);
+  // console.log(productList);
   
   const dispatch = useDispatch()
       const {featurelist} = useSelector(state => state.commonSlice)
