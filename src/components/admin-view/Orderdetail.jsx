@@ -5,7 +5,7 @@ import { Label } from '../ui/label'
 import { Badge } from '../ui/badge'
 import CommonForm from '../view/form'
 import { useToast } from '../../hooks/use-toast'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { getAllOrdersForAdmin, getOrderDetailsForAdmin, updateOrderStatus } from '../../config/store/admin/order'
   
 const initialdata = {
@@ -15,6 +15,7 @@ const initialdata = {
 
 const Orderdetail = ({Orderdetail}) => {
     const [formData,setFormData] = useState(initialdata)
+    const { user } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
   const { toast } = useToast();
 
@@ -99,6 +100,7 @@ const Orderdetail = ({Orderdetail}) => {
                 <div className="grid gap-2">
                   <div className="font-medium">Shipping Info</div>
                   <div className="grid gap-0.5 text-muted-foreground">
+                  <span>{user?.username}</span>
                     <span>{Orderdetail?.addressInfo?.address}</span>
                     <span>{Orderdetail?.addressInfo?.city}</span>
                     <span>{Orderdetail?.addressInfo?.pincode}</span>

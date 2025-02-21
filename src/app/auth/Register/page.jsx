@@ -31,7 +31,7 @@ const Register = () => {
         router.push("/auth/login");
       } else {
         toast({
-          title: data?.payload?.message,
+          title: "User already exist",
           variant: "destructive", // Corrected variant
         });
       }

@@ -14,7 +14,6 @@ const Order = () => {
   const [open,setopen]=useState(false)
   const { orderList,orderDetails } = useSelector(state => state.shopOrder)
   const { user } = useSelector(state => state.auth)
-  console.log(orderDetails);
 useEffect(()=>{
   dispatch(getAllOrdersByUserId(user?.id))
 

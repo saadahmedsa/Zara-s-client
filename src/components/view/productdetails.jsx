@@ -9,6 +9,7 @@ import { Avatar, AvatarFallback } from "../ui/avatar";
 import { addTocart, getcartitems } from "../../config/store/shop/cart-slice";
 import { useToast } from "../../hooks/use-toast";
 import { setProductDetails } from "../../config/store/shop/product-slice";
+import { log } from "util";
 
 function ProductDetailsDialog({ open, setOpen, productDetails }) {
 
@@ -16,10 +17,12 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
   const { user } = useSelector((state) => state.auth);
   const { cartItems } = useSelector((state) => state.cartItems);
   const { toast } = useToast();
+  console.log(cartItems);
+  
 
 
   function handleAddToCart(getCurrentProductId, getTotalStock) {
-    let getCartItems = cartItems.items || [];
+    let getCartItems = cartItems.items.items || [];
 
     if (getCartItems.length) {
       const indexOfCurrentItem = getCartItems.findIndex(

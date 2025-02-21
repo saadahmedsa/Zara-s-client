@@ -26,7 +26,7 @@ const Login = () => {
         })
       }else{
         toast({
-          title :data?.payload?.message,
+          title :"Invalid email or Password",
           variant : "destructive"
         })
 

@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux'
 
 const Orderdetail = ({Orderdetail}) => {
   const { user } = useSelector((state) => state.auth);
+  
   return (
     <div>
          <DialogContent className="sm:max-w-[600px]">
@@ -72,7 +73,7 @@ const Orderdetail = ({Orderdetail}) => {
           <div className="grid gap-2">
             <div className="font-medium">Shipping Info</div>
             <div className="grid gap-0.5 text-muted-foreground">
-              {/* <span>{user.userName}</span> */}
+              <span>{user?.username}</span>
               <span>{Orderdetail?.addressInfo?.address}</span>
               <span>{Orderdetail?.addressInfo?.city}</span>
               <span>{Orderdetail?.addressInfo?.pincode}</span>
