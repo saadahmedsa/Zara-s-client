@@ -6,9 +6,6 @@ import { FileIcon, UploadCloudIcon, XIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import { Skeleton } from "../ui/skeleton";
 
-const CLOUDINARY_UPLOAD_PRESET = "your_upload_preset"; // Replace this
-const CLOUDINARY_CLOUD_NAME = "your_cloud_name"; // Replace this
-
 const ImageUpload = ({
   file,
   setfile,
@@ -49,7 +46,7 @@ const ImageUpload = ({
 
     const formData = new FormData();
     formData.append("file", imageFile);
-    formData.append("upload_preset", "Zaracollection);
+    formData.append("upload_preset", "Zaracollection");
 
     try {
       const response = await fetch(
