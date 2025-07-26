@@ -4,10 +4,19 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { FileIcon, UploadCloudIcon, XIcon } from "lucide-react";
 import { Button } from "../ui/button";
-import { supabase } from "../../lib/suapase"; // Import Supabase client
 import { Skeleton } from "../ui/skeleton";
 
-const ImageUpload = ({ file, setfile, uploaded, setuploaded,iseditmode,istrue=false }) => {
+const CLOUDINARY_UPLOAD_PRESET = "your_upload_preset"; // Replace this
+const CLOUDINARY_CLOUD_NAME = "your_cloud_name"; // Replace this
+
+const ImageUpload = ({
+  file,
+  setfile,
+  uploaded,
+  setuploaded,
+  iseditmode,
+  istrue = false,
+}) => {
   const inputref = useRef(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [uploading, setUploading] = useState(false);
@@ -17,7 +26,7 @@ const ImageUpload = ({ file, setfile, uploaded, setuploaded,iseditmode,istrue=fa
     if (selectedFile) {
       setfile(selectedFile);
       setImagePreview(URL.createObjectURL(selectedFile));
-      await uploadToSupabase(selectedFile);
+      await uploadToCloudinary(selectedFile);
     }
   };
 
@@ -31,34 +40,35 @@ const ImageUpload = ({ file, setfile, uploaded, setuploaded,iseditmode,istrue=fa
     if (droppedFile) {
       setfile(droppedFile);
       setImagePreview(URL.createObjectURL(droppedFile));
-      await uploadToSupabase(droppedFile);
+      await uploadToCloudinary(droppedFile);
     }
   };
 
-  // Upload image to Supabase
-  const uploadToSupabase = async (imageFile) => {
+  const uploadToCloudinary = async (imageFile) => {
     setUploading(true);
-    const fileName = `${Date.now()}-${imageFile.name}`; // Unique filename
-    const { data, error } = await supabase.storage
-      .from("productimage") // Replace with your Supabase storage bucket name
-      .upload(`uploads/${fileName}`, imageFile);
 
-    if (error) {
-      console.error("Error uploading image:", error.message);
+    const formData = new FormData();
+    formData.append("file", imageFile);
+    formData.append("upload_preset", "Zaracollection);
+
+    try {
+      const response = await fetch(
+        `https://api.cloudinary.com/v1_1/dyytgvv4b/image/upload`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      const data = await response.json();
+      if (data.secure_url) {
+        setuploaded(data.secure_url);
+      }
+    } catch (error) {
+      console.error("Error uploading to Cloudinary:", error);
+    } finally {
       setUploading(false);
-      return;
     }
-
-    // Get public URL
-    const { data: publicUrlData } = supabase.storage
-      .from("productimage")
-      .getPublicUrl(`uploads/${fileName}`);
-
-    if (publicUrlData) {
-      setuploaded(publicUrlData.publicUrl); // Set uploaded image URL
-    }
-
-    setUploading(false);
   };
 
   function handleRemoveImage() {
@@ -71,7 +81,7 @@ const ImageUpload = ({ file, setfile, uploaded, setuploaded,iseditmode,istrue=fa
   }
 
   return (
-    <div className={`w-full  mt-4 ${istrue ? "" :"max-w-md mx-auto"}`}>
+    <div className={`w-full mt-4 ${istrue ? "" : "max-w-md mx-auto"}`}>
       <Label className="text-lg font-semibold mb-2 block">Upload image</Label>
       <div
         onDragOver={dragover}
@@ -85,8 +95,6 @@ const ImageUpload = ({ file, setfile, uploaded, setuploaded,iseditmode,istrue=fa
           ref={inputref}
           required
           disabled={iseditmode}
-
-        //   accept="image/*"
           onChange={handleimage}
         />
         {!file ? (
@@ -100,7 +108,7 @@ const ImageUpload = ({ file, setfile, uploaded, setuploaded,iseditmode,istrue=fa
         ) : (
           <div className="flex flex-col items-center">
             {uploading ? (
-              <Skeleton className="w-full h-10"/>
+              <Skeleton className="w-full h-10" />
             ) : (
               <img
                 src={imagePreview}
